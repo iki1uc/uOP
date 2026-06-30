@@ -6,20 +6,36 @@
 </head>
 <body>
 
-  <!-- PRM = Körper / Root -->
   <div id="prm-root">
-
-    <!-- PRIMUS = Slave -->
     <div id="inst-primus"></div>
-
-    <!-- GESELLE = Vorschaltung -->
     <div id="inst-geselle"></div>
-
-    <!-- VERWALTUNG = Schalter / UI -->
     <div id="inst-admin"></div>
-
   </div>
+
+  <script type="module">
+    // PRM entscheidet dynamisch
+    const needPrimus = true;
+    const needGeselle = true;
+    const needAdmin = true;
+
+    if (needPrimus) {
+      import('./primus-core.js').then(mod => {
+        mod.initPrimus(document.getElementById('inst-primus'));
+      });
+    }
+
+    if (needGeselle) {
+      import('./geselle-core.js').then(mod => {
+        mod.initGeselle(document.getElementById('inst-geselle'));
+      });
+    }
+
+    if (needAdmin) {
+      import('./admin-core.js').then(mod => {
+        mod.initAdmin(document.getElementById('inst-admin'));
+      });
+    }
+  </script>
 
 </body>
 </html>
-
